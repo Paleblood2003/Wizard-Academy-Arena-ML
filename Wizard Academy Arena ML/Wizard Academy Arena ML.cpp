@@ -1,4 +1,3 @@
-// note to self: remember to get rid of the notes about part 1 and part 2
 // neccesary setup
 #include <iostream>
 #include <string>       // neccesary to add strings
@@ -10,7 +9,7 @@ double castSpell(string spellName = "MAGIC MISSILE", int basePower = 10, double 
 double calculateShield(double baseShield = 20.0, double absorptionRate = 0.25);     // I need to define fallbacks for undefined calls for tier, charge level, spellName, etc.
 // initializating part 2
 int registerCombo(bool hitSuccessful);
-void consumeMana(int cost = 5);
+void consumeMana(int cost = 5);     // defaults the mana use to 5 unless specified otherwise
 bool processBossRage(double damageDealt);
 int gainWizardXP(int expGained);
 
@@ -112,7 +111,7 @@ double calculateShield(double baseShield, double absorptionRate) // used to calc
 
 // Functions added in part two
 
-int registerCombo(bool hitSuccessful)
+int registerCombo(bool hitSuccessful) // Keeps track of the current combo
 {
     static int comboCount = 0;
     if (hitSuccessful)
@@ -126,7 +125,7 @@ int registerCombo(bool hitSuccessful)
     return comboCount;
 }
 
-void consumeMana(int cost)
+void consumeMana(int cost) // Keeps track of how much mana has been used during the fight
 {
     static int totalManaUsed = 0;
 
@@ -160,5 +159,5 @@ int gainWizardXP(int expGained)
         wizardLevel++;
         cout << "LEVEL UP!\n";
     }
-return wizardLevel;
+    return wizardLevel;
 }
