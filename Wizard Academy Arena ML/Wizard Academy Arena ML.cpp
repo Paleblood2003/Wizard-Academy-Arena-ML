@@ -10,7 +10,7 @@ double castSpell(string spellName = "MAGIC MISSILE", int basePower = 10, double 
 double calculateShield(double baseShield = 20.0, double absorptionRate = 0.25);     // I need to define fallbacks for undefined calls for tier, charge level, spellName, etc.
 // initializating part 2
 int registerCombo(bool hitSuccessful);
-void consumeMana(int cost);
+void consumeMana(int cost = 5);
 bool processBossRage(double damageDealt);
 int gainWizardXP(int expGained);
 
@@ -114,20 +114,51 @@ double calculateShield(double baseShield, double absorptionRate) // used to calc
 
 int registerCombo(bool hitSuccessful)
 {
-
+    static int comboCount = 0;
+    if (hitSuccessful)
+    {
+        comboCount++;
+    }
+    else
+    {
+        comboCount = 0;
+    }
+    return comboCount;
 }
 
 void consumeMana(int cost)
 {
+    static int totalManaUsed = 0;
 
+    totalManaUsed += cost;
+    cout << "Total Mana Used: " << totalManaUsed << endl;
 }
 
 bool processBossRage(double damageDealt)
 {
+    static double totalDamageDealt = 0.0;
 
+    totalDamageDealt += damageDealt;
+    
+    if (totalDamageDealt >= 100.0)
+    {
+        return true;
+    }
+
+    return false;
 }
 
 int gainWizardXP(int expGained)
 {
+    static int totalXP = 0;
+    static int wizardLevel;
 
+    totalXP += expGained;
+
+    if (totalXP >= wizardLevel * 100)
+    {
+        wizardLevel++;
+        cout << "LEVEL UP!\n";
+    }
+return wizardLevel;
 }
